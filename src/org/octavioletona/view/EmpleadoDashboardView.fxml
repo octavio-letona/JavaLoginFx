@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane id="mainPane" prefHeight="650.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21.0.1" fx:controller="org.octavioletona.controller.EmpleadoDashboardController">
+    <stylesheets>
+        <URL value="@/org/octavioletona/view/style/empleadodashboardview.css" />
+    </stylesheets>
+    
+    <left>
+        <VBox id="sidebar" spacing="15.0" prefWidth="260.0">
+            <Label id="logoLabel" text="Portal Empleado" />
+            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+                <Button text="Mi Inicio" styleClass="menuBtn, activeMenuBtn" maxWidth="Infinity" />
+                <Button text="Mis Tareas" styleClass="menuBtn" maxWidth="Infinity" />
+                <Button text="Asistencia y Marcajes" styleClass="menuBtn" maxWidth="Infinity" />
+                <Button text="Solicitudes y Permisos" styleClass="menuBtn" maxWidth="Infinity" />
+            </VBox>
+            <Button text="Cerrar Sesión" styleClass="logoutBtn" maxWidth="Infinity" />
+        </VBox>
+    </left>
+    
+    <center>
+        <VBox id="contentArea" spacing="25.0">
+            <HBox id="headerBar" alignment="CENTER_RIGHT">
+                <Label fx:id="lblBienvenida" text="Bienvenido, Empleado" id="welcomeLabel" />
+            </HBox>
+            
+            <VBox id="dashboardCards" spacing="20.0" VBox.vgrow="ALWAYS">
+                <Label text="Mi Resumen Personal" styleClass="sectionTitle" />
+                <HBox spacing="20.0">
+                    <VBox styleClass="statCard" HBox.hgrow="ALWAYS">
+                        <Label text="Tareas Pendientes" styleClass="statTitle" />
+                        <Label text="4" styleClass="statValue" />
+                    </VBox>
+                    <VBox styleClass="statCard" HBox.hgrow="ALWAYS">
+                        <Label text="Proyectos Asignados" styleClass="statTitle" />
+                        <Label text="2" styleClass="statValue" />
+                    </VBox>
+                    <VBox styleClass="statCard" HBox.hgrow="ALWAYS">
+                        <Label text="Días de Vacaciones" styleClass="statTitle" />
+                        <Label text="12" styleClass="statValue" />
+                    </VBox>
+                </HBox>
+                
+                <Label text="Avisos y Comunicados" styleClass="sectionTitle" />
+                <VBox styleClass="activityPanel" VBox.vgrow="ALWAYS">
+                    <Label text="Recuerda registrar tu salida al finalizar el turno. La reunión general de equipo será este viernes a las 10:00 AM." styleClass="activityText" />
+                </VBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

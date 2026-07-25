@@ -56,10 +56,10 @@ public class InicioSesionController implements Initializable {
 
         // Datos completos
         String passwordHash = SecurityUtil.hashSHA256(password);
-        
+
         // Llamar al DAO para iniciar sesión
         Usuario usuarioIniciado = usuarioDAO.iniciarSesion(usuario.trim(), passwordHash);
-        
+
         if (usuarioIniciado != null) {
             if (lblMensaje != null) {
                 lblMensaje.setText("Inicio correcto");
@@ -89,38 +89,45 @@ public class InicioSesionController implements Initializable {
                 tituloDashboard = "Panel de Administración";
                 break;
             case "empleado":
-                if (lblMensaje != null) {
-                    lblMensaje.setText("Vista de empleado no disponible aún.");
-                }
-                return;
+                rutaFXML = "/org/octavioletona/view/EmpleadoDashboardView.fxml";
+                tituloDashboard = "Panel de Empleado";
+                break;
+
+//            case "cajero":
+//                rutaFXML = "/org/octavioletona/view/EmpleadoDashboardView.fxml";
+//                tituloDashboard = "Panel de Empleado";
+//                if (lblMensaje != null) {
+//                    lblMensaje.setText("Vista de empleado no disponible aún.");
+//                }
             default:
                 if (lblMensaje != null) {
                     lblMensaje.setText("Rol no reconocido: " + usuario.getRol());
                 }
                 return;
         }
-        
+
         try {
             FXMLLoader cargadorFXML = new FXMLLoader(getClass().getResource(rutaFXML));
             Parent raiz = cargadorFXML.load();
-            
-            AdminDashboradController controlado = cargadorFXML.getController();
-            if (controlado != null) {
-                controlado.iniciarUsuario(usuario);            
+            Object controlador = cargadorFXML.getController();
+            if (controlador instanceof AdminDashboradController) {
+                ((AdminDashboradController) controlador).iniciarUsuario(usuario);
+            } else if (controlador instanceof EmpleadoDashboardController) {
+                ((EmpleadoDashboardController) controlador).iniciarUsuario(usuario);
             }
-            
+
             Stage escenario = new Stage();
             escenario.setScene(new Scene(raiz));
             escenario.setTitle(tituloDashboard);
             escenario.show();
-            
+
             if (btnIniciarSesion != null && btnIniciarSesion.getScene() != null) {
                 Stage escenaActual = (Stage) btnIniciarSesion.getScene().getWindow();
                 if (escenaActual != null) {
                     escenaActual.close();
                 }
             }
-            
+
         } catch (IOException e) {
             System.err.println("Error al cargar la vista: " + rutaFXML + " - " + e.getMessage());
             e.printStackTrace();

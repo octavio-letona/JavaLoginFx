@@ -1,0 +1,113 @@
+#mainPane {
+    -fx-background-color: #f4f7f6;
+}
+
+#sidebar {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 2, 0);
+}
+
+#logoLabel {
+    -fx-font-size: 26px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1976d2;
+    -fx-padding: 0 0 40 0;
+}
+
+.menuBtn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 15 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.menuBtn:hover {
+    -fx-background-color: #f8f9fa;
+    -fx-text-fill: #2c3e50;
+}
+.activeMenuBtn {
+    -fx-background-color: #e3f2fd;
+    -fx-text-fill: #1976d2;
+}
+
+.logoutBtn {
+    -fx-background-color: #ffebee;
+    -fx-text-fill: #d32f2f;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 15 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.logoutBtn:hover {
+    -fx-background-color: #ffcdd2;
+}
+
+#contentArea {
+    -fx-padding: 30 40;
+}
+
+#headerBar {
+    -fx-padding: 15 25;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.03), 5, 0, 0, 2);
+}
+
+#welcomeLabel {
+    -fx-font-size: 17px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: 700;
+    -fx-text-fill: #34495e;
+}
+
+.sectionTitle {
+    -fx-font-size: 22px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: 800;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 15 0 5 0;
+}
+
+.statCard {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15;
+    -fx-padding: 25 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 15, 0, 0, 8);
+}
+
+.statTitle {
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #95a5a6;
+    -fx-font-weight: 600;
+    -fx-padding: 0 0 5 0;
+}
+
+.statValue {
+    -fx-font-size: 36px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1976d2;
+}
+
+.activityPanel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 15, 0, 0, 8);
+}
+
+.activityText {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #7f8c8d;
+    -fx-line-spacing: 1.5em;
+}
