@@ -3,7 +3,7 @@ package org.octavioletona.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
+//hasear nustra clave as SHA256
 public class SecurityUtil {
     
     public static String hashSHA256(String password){
