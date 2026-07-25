@@ -93,12 +93,10 @@ public class InicioSesionController implements Initializable {
                 tituloDashboard = "Panel de Empleado";
                 break;
 
-//            case "cajero":
-//                rutaFXML = "/org/octavioletona/view/EmpleadoDashboardView.fxml";
-//                tituloDashboard = "Panel de Empleado";
-//                if (lblMensaje != null) {
-//                    lblMensaje.setText("Vista de empleado no disponible aún.");
-//                }
+            case "cajero":
+                rutaFXML = "/org/octavioletona/view/CajeroDashboardView.fxml";
+                tituloDashboard = "Panel de Cajero";
+                break;
             default:
                 if (lblMensaje != null) {
                     lblMensaje.setText("Rol no reconocido: " + usuario.getRol());
