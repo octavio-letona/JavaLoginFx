@@ -1,6 +1,4 @@
-package org.ocyavioletona.controller;
-
-
+package org.octavioletona.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,46 +36,69 @@ public class InicioSesionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usuarioDAO = new UsuarioDAO();
-        lblMensaje.setText("");
+        if (lblMensaje != null) {
+            lblMensaje.setText("");
+        }
     }
 
     @FXML
     public void eventoInicioSesion(ActionEvent evento) {
-        String usuario = txtUsuario.getText();
-        String password = txtPassword.getText();
+        String usuario = txtUsuario != null ? txtUsuario.getText() : "";
+        String password = txtPassword != null ? txtPassword.getText() : "";
 
-        // verificación si los datos estan vacios
-        if (usuario.isEmpty() || password.isEmpty()) {
-            lblMensaje.setText("Por favor, complete todos sus datos.");
+        // Verificación si los datos están vacíos
+        if (usuario.trim().isEmpty() || password.trim().isEmpty()) {
+            if (lblMensaje != null) {
+                lblMensaje.setText("Por favor, complete todos sus datos.");
+            }
             return;
         }
 
         // Datos completos
         String passwordHash = SecurityUtil.hashSHA256(password);
         
-        // llamar al dato para iniciar sesion
-        Usuario usuarioIniciado = usuarioDAO.iniciarSesion(usuario, passwordHash);
+        // Llamar al DAO para iniciar sesión
+        Usuario usuarioIniciado = usuarioDAO.iniciarSesion(usuario.trim(), passwordHash);
         
         if (usuarioIniciado != null) {
-            lblMensaje.setText("Inicio correcto");
+            if (lblMensaje != null) {
+                lblMensaje.setText("Inicio correcto");
+            }
             abrirDashboard(usuarioIniciado);
         } else {
-            lblMensaje.setText("Usuario o contraseña incorrectos");
+            if (lblMensaje != null) {
+                lblMensaje.setText("Usuario o contraseña incorrectos");
+            }
         }
     }
 
     private void abrirDashboard(Usuario usuario) {
+        if (usuario == null || usuario.getRol() == null) {
+            if (lblMensaje != null) {
+                lblMensaje.setText("Error: Rol de usuario no válido.");
+            }
+            return;
+        }
+
         String rutaFXML = "";
         String tituloDashboard = "";
 
         switch (usuario.getRol().toLowerCase()) {
             case "admin":
+            case "administrador":
                 rutaFXML = "/org/octavioletona/view/AdminDashboradView.fxml";
                 tituloDashboard = "Panel de Administración";
                 break;
             case "empleado":
-                // Lógica para empleado si la necesitas luego
-                break;
+                if (lblMensaje != null) {
+                    lblMensaje.setText("Vista de empleado no disponible aún.");
+                }
+                return;
+            default:
+                if (lblMensaje != null) {
+                    lblMensaje.setText("Rol no reconocido: " + usuario.getRol());
+                }
+                return;
         }
         
         try {
@@ -85,19 +106,28 @@ public class InicioSesionController implements Initializable {
             Parent raiz = cargadorFXML.load();
             
             AdminDashboradController controlado = cargadorFXML.getController();
-            controlado.iniciarUsuario(usuario);            
+            if (controlado != null) {
+                controlado.iniciarUsuario(usuario);            
+            }
             
             Stage escenario = new Stage();
             escenario.setScene(new Scene(raiz));
             escenario.setTitle(tituloDashboard);
             escenario.show();
             
-            Stage escenaActual = (Stage) btnIniciarSesion.getScene().getWindow();
-            escenaActual.close();
+            if (btnIniciarSesion != null && btnIniciarSesion.getScene() != null) {
+                Stage escenaActual = (Stage) btnIniciarSesion.getScene().getWindow();
+                if (escenaActual != null) {
+                    escenaActual.close();
+                }
+            }
             
         } catch (IOException e) {
             System.err.println("Error al cargar la vista: " + rutaFXML + " - " + e.getMessage());
-            lblMensaje.setText("Error interno");
+            e.printStackTrace();
+            if (lblMensaje != null) {
+                lblMensaje.setText("Error interno al abrir la vista.");
+            }
         }
     }
 }

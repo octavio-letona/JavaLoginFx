@@ -1,4 +1,4 @@
-package org.ocyavioletona.controller;
+package org.octavioletona.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,9 +19,8 @@ public class AdminDashboradController implements Initializable {
 
     public void iniciarUsuario(Usuario usuario){
         this.usuarioActual = usuario;
-        lblBienvenida.setText("Bienvenido administrador " + usuario.getUsername());
-        //instrucciones
+        if (lblBienvenida != null && usuario != null) {
+            lblBienvenida.setText("Bienvenido administrador " + usuario.getUsername());
+        }
     }
-    
-    
 }
