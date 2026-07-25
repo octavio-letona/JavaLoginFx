@@ -1,23 +1,26 @@
-package org.octavioletona.controller;
+package org.ocyavioletona.controller;
+
+
 
 import java.io.IOException;
-import org.octavioletona.dao.UsuarioDAO;
-import org.octavioletona.util.SecurityUtil;
-import org.octavioletona.model.Usuario;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import org.octavioletona.dao.UsuarioDAO;
+import org.octavioletona.model.Usuario;
+import org.octavioletona.util.SecurityUtil;
 
 public class InicioSesionController implements Initializable {
 
@@ -36,8 +39,6 @@ public class InicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         usuarioDAO = new UsuarioDAO();
         lblMensaje.setText("");
-        //btnIniciarSesion.setOnAction(e -> eventoInicioSesion());
-
     }
 
     @FXML
@@ -45,18 +46,19 @@ public class InicioSesionController implements Initializable {
         String usuario = txtUsuario.getText();
         String password = txtPassword.getText();
 
-        //verificación si los datos estan vacios
+        // verificación si los datos estan vacios
         if (usuario.isEmpty() || password.isEmpty()) {
             lblMensaje.setText("Por favor, complete todos sus datos.");
             return;
         }
-        //Datos completos
+
+        // Datos completos
         String passwordHash = SecurityUtil.hashSHA256(password);
-        //llamar al dato para iniciar sesion
+        
+        // llamar al dato para iniciar sesion
         Usuario usuarioIniciado = usuarioDAO.iniciarSesion(usuario, passwordHash);
-        // ! =
+        
         if (usuarioIniciado != null) {
-            //lblMensaje.setStyle("-fx-background-color: #60682e;");
             lblMensaje.setText("Inicio correcto");
             abrirDashboard(usuarioIniciado);
         } else {
@@ -74,10 +76,10 @@ public class InicioSesionController implements Initializable {
                 tituloDashboard = "Panel de Administración";
                 break;
             case "empleado":
-
+                // Lógica para empleado si la necesitas luego
                 break;
-
         }
+        
         try {
             FXMLLoader cargadorFXML = new FXMLLoader(getClass().getResource(rutaFXML));
             Parent raiz = cargadorFXML.load();
@@ -94,9 +96,8 @@ public class InicioSesionController implements Initializable {
             escenaActual.close();
             
         } catch (IOException e) {
-            System.err.println("Error al cargar la vista:" + rutaFXML+ e.getMessage());
+            System.err.println("Error al cargar la vista: " + rutaFXML + " - " + e.getMessage());
             lblMensaje.setText("Error interno");
         }
     }
-
 }
