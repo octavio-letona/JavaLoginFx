@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="mainPane" prefHeight="550.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21.0.1" fx:controller="org.octavioletona.controller.InicioSesionController">
+    <stylesheets>
+        <URL value="@/org/octavioletona/view/style/iniciosesionview.css" />
+    </stylesheets>
+    <children>
+        <VBox id="loginCard" alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="80.0">
+            <Label id="titleLabel" text="Iniciar Sesión" />
+            <VBox spacing="8.0" alignment="CENTER_LEFT">
+                <Label text="Usuario" styleClass="inputLabel" />
+                <TextField fx:id="txtUsuario" promptText="Ingrese su usuario..." styleClass="inputField" />
+            </VBox>
+            <VBox spacing="8.0" alignment="CENTER_LEFT">
+                <Label text="Contraseña" styleClass="inputLabel" />
+                <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña..." styleClass="inputField" />
+            </VBox>
+            <Label fx:id="lblMensaje" text="" styleClass="errorLabel" />
+            <Button fx:id="btnIniciarSesion" onAction="#eventoInicioSesion" text="INGRESAR" styleClass="primaryBtn" />
+        </VBox>
+    </children>
+</AnchorPane>
