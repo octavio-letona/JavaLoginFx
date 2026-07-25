@@ -8,9 +8,10 @@ public class Conexion {
     private static Conexion instancia;
     
     // Configuración del string de conexión, y credenciales
-    private static final String URL = "jdbc:mysql://localhost:3306/ht4db_in4cm?serverTimezone=UTC";
-    private static final String USER = "profesor";
-    private static final String PASSWORD = "kinal"; 
+    
+    private static final String URL = "jdbc:mysql://localhost:3306/contrasenayusuario_prueba?serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "A2L4%I71c.E"; 
 
     //Constructor privado para evitar que hagan "new Conexion()" fuera de esta clase
     private Conexion() {
